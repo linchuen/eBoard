@@ -1,0 +1,23 @@
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: eboard
+  http:
+    multipart:
+      enabled: false
+  servlet:
+    multipart:
+      max-file-size: 25MB
+      max-request-size: 25MB
+  resources:
+    static-locations: file:${web.upload-path},classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
+  mail:
+    default-encoding: UTF-8
+    username: youraccount@gmail.com
+    password: yourpassword
+
+web:
+  upload-path: D:\\eboard\\storage\\
+  formal-url: 127.0.0.1
