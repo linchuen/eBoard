@@ -2,6 +2,7 @@ package Cooba.eBoard.WebUser;
 
 
 import Cooba.eBoard.mailservice.MailService;
+import Cooba.eBoard.rabbitmq.Sender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,7 +22,8 @@ public class WebUserService implements UserDetailsService {
     private WebUserRepository webUserRepository;
     @Autowired
     private MailService mailService;
-
+    @Autowired
+    Sender sender;
     @Override
     public WebUser loadUserByUsername(String email) throws UsernameNotFoundException {
         return webUserRepository.findByEmail(email)
@@ -37,7 +39,7 @@ public class WebUserService implements UserDetailsService {
         webUser.setPassword(encodedPassword);
         webUserRepository.save(webUser);
         try {
-            mailService.sendConfirmMail(webUser.getEmail());
+            sender.send_to_CONFIRMMAIL_QUENE(webUser.getEmail());
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("發送認證信譽到錯誤");
         }

@@ -17,6 +17,11 @@ spring:
     default-encoding: UTF-8
     username: youraccount@gmail.com
     password: yourpassword
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
 
 web:
   upload-path: D:\\eboard\\storage\\
